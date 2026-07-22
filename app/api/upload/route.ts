@@ -108,6 +108,6 @@ export async function POST(req: NextRequest) {
         VALUES (
           ${s.code}, ${s.name}, ${s.season}, ${s.rate}, ${s.salesQty},
           ${r.fabric || r.fabric2 || '(미입력)'}, ${'item'},
-          ${r.qty}, ${r.vendor}, ${r.blend}, ${r.fabric || r.fabric2 || ''}, ${r.br}, ${r.color}, ${r.part}
-        )
-      `;
+        ${r.qty}, ${r.vendor}, ${r.blend}, ${r.fabric || r.fabric2 || ''}, ${r.br}, ${r.color}, ${r.part}
+       )   
+        `;
