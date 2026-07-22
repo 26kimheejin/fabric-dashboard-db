@@ -102,10 +102,12 @@ export async function POST(req: NextRequest) {
     for (const s of top100) {
       const fabrics = (lgIndex[s.code.toUpperCase()] || []).filter((r: any) => r.part.startsWith("겉"));
       for (const r of fabrics) {
-        await sql`
-          INSERT INTO analysis_result 
-          (style_code, style_name, season, rate, sales_qty, axis_key, axis_type, qty, vendor, blend, fabric, br, color, part)
-          VALUES (
-            ${s.code}, ${s.name}, ${s.season}, ${s.rate}, ${s.salesQty},
-            ${r.fabric || r.fabric2 || '(미입력)'}, 'item',
-            ${r.qty}, ${r.vendor}, ${r.blend}, ${r.fabric ||
+       await sql`
+        INSERT INTO analysis_result 
+        (style_code, style_name, season, rate, sales_qty, axis_key, axis_type, qty, vendor, blend, fabric, br, color, part)
+        VALUES (
+          ${s.code}, ${s.name}, ${s.season}, ${s.rate}, ${s.salesQty},
+          ${r.fabric || r.fabric2 || '(미입력)'}, ${'item'},
+          ${r.qty}, ${r.vendor}, ${r.blend}, ${r.fabric || r.fabric2 || ''}, ${r.br}, ${r.color}, ${r.part}
+        )
+      `;
